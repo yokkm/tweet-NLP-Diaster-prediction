@@ -76,7 +76,7 @@ seed = 10
 test_size = 0.2
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=seed)
 
-# fit model no training data
+# #--------- XGBOOST Classifier -----------#
 model = XGBClassifier()
 model.fit(X_train, y_train)
 
@@ -86,3 +86,12 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy: %.2f%%" % (accuracy * 100.0))
 #given accuracy Accuracy: 78.01%
+
+#--------- Random Forest -----------#
+classifier = RandomForestClassifier(n_estimators = 300, criterion = 'entropy', random_state = 0)
+
+classifier.fit(X_train, y_train)
+y_pred_RF = classifier.predict(X_test)
+accuracy_RF = accuracy_score(y_test, y_pred_RF)
+print("Accuracy: %.2f%%" % (accuracy_RF * 100.0))
+#given accuracy Accuracy: 79.08%
